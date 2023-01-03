@@ -36,8 +36,8 @@ Route::get('/greeting/{locale}', function ($locale) {
 
 Route::get('/language', function () {
 
-   /* app()->setLocale(Session::get('locale'));
-    dd(app()->getLocale());*/
+//   /* app()->setLocale(Session::get('locale'));
+//    dd(app()->getLocale());*/
 
 });
 
