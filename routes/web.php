@@ -29,7 +29,7 @@ Route::get('/greeting/{locale}', function ($locale) {
 
     Session::put('locale', $locale);
 
-    app()->setLocale(Session::get('locale'));
+    app()->setLocale($locale);
 
 });
 
@@ -45,7 +45,7 @@ Route::get('/language', function () {
 Route::group(['middleware'=>'language'],function ()
 {
 
-    Route::get('/', function () {
+    Route::get('/{lang?}', function ($lang = null) {
         //app()->setLocale(Session::get('locale'));
         return view('welcome');
     });

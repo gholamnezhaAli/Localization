@@ -5,7 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 class LanguageSwitcher
@@ -13,11 +15,13 @@ class LanguageSwitcher
 
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::has('locale'))
-        {
-            Session::put('locale', Config::get('app.locale'));
+        $lang = Route::current()->parameter("lang");
+        if($lang){
+            App::setLocale($lang);
+        }else{
+            App::setLocale("en");
         }
-        App::setLocale(Session::get('locale'));
+
 
         return $next($request);
     }
