@@ -16,6 +16,7 @@ class LanguageSwitcher
     public function handle(Request $request, Closure $next)
     {
         $lang = Route::current()->parameter("lang");
+
         if($lang){
             App::setLocale($lang);
         }else{
